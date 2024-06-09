@@ -1,3 +1,4 @@
+import os
 from torch_xla import runtime as xr
 import args_parse
 
@@ -362,8 +363,12 @@ def train_imagenet():
   xm.master_print('Max Accuracy: {:.2f}%'.format(max_accuracy))
   return max_accuracy
 
+def print_all_environment_variables():
+    for key, value in os.environ.items():
+        print(f'{key}: {value}')
 
 def _mp_fn(index, flags):
+  print_all_environment_variables()  
   global FLAGS
   FLAGS = flags
   torch.set_default_dtype(torch.float32)
