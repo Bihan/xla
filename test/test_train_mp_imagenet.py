@@ -365,7 +365,7 @@ def train_imagenet():
 
 def print_all_environment_variables():
     for key, value in os.environ.items():
-        print(f'{key}: {value}')
+        xm.master_print(f'{key}: {value}')
 
 def _mp_fn(index, flags):
   print_all_environment_variables()  
